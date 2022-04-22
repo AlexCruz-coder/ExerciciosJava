@@ -3,12 +3,11 @@ public class Exercicio06 {
 
 	public static void main(String args[]){
 		
-		//2.	 Imprima	a	soma	de	1	at�	1000.
-		
-		for(Integer i = 1 ; i <= 1000 ; i++) {
-			Integer a = i + 1;
-			System.out.println("A soma de " + i + " + " + a + " � igual a: " + (a+i));
-			
-		}
+/* 4. Crie uma classe Televisao e uma classe ControleRemoto que pode controlar o volume e
+trocar os canais da televisão. O controle de volume permite:
+ aumentar ou diminuir a potência do volume de som em uma unidade de cada vez;
+ aumentar e diminuir o número do canal em uma unidade
+ trocar para um canal indicado;
+ consultar o valor do volume de som e o canal selecionado.  */
 	}
 }
