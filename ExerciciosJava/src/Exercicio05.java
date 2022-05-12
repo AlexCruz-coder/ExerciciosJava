@@ -21,6 +21,11 @@ Encapsular todos os atributos da classe (criar os métodos set e get).*/
 		Elevador e1 = new Elevador();
 		e1.Inicializa(5);
 		e1.Entra();
+		e1.Entra();
+		e1.Entra();
+		e1.Entra();
+		e1.Entra();
+		e1.Entra();
 		
 			
 	}
@@ -88,12 +93,33 @@ Encapsular todos os atributos da classe (criar os métodos set e get).*/
 		if (this.capacidadeMaxima>this.quantidadePessoas) {
 			this.quantidadePessoas++;
 			if (this.quantidadePessoas>1) {
-				System.out.println("Entrou mais uma pessoa no Elevador, que agora transporta " + this.quantidadePessoas + " pessoas.");
+				String andarVerificado = verificarAndar(this.andar);
+				System.out.println("Entrou mais uma pessoa no Elevador, que agora transporta " + this.quantidadePessoas +
+						" pessoas e está no "+ andarVerificado + ".");
 			} else {
 				String andarVerificado = verificarAndar(this.andar);
-				System.out.println("Uma pessoa entrou no elevador que está no " + andarVerificado);
+				System.out.println("Uma pessoa entrou no elevador que está no " + andarVerificado+ ".");
 			}
 			
+		} else {
+			System.out.println("O elevador já está lotado.");
+		}
+	}
+	
+	public void Sai() {
+		if (this.quantidadePessoas>0) {
+			this.quantidadePessoas--;
+			switch(this.quantidadePessoas) {
+			case 0:
+				System.out.println("O elevador agora está vazio.");
+			break;
+			case 1:
+				System.out.println("O elevador agora está com 1 pessoa.");
+			default:
+				System.out.println("O elevador agora está com " + this.quantidadePessoas + "pessoas.");
+			}
+		} else {
+			System.out.println("O elevador já está vazio!");
 		}
 	}
 
