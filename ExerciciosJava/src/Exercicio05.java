@@ -19,15 +19,42 @@ Encapsular todos os atributos da classe (criar os métodos set e get).*/
 		
 		//Run
 		Elevador e1 = new Elevador();
-		e1.Inicializa(5);
-		e1.Entra();
-		e1.Entra();
-		e1.Entra();
-		e1.Entra();
-		e1.Entra();
-		e1.Entra();
+		e1.inicializa(5,20);
+
+		//Entrando 5 pessoas
+		for(int i=0; i<5; i++) {
+			e1.entra();
+		}
 		
+		//Subindo 10 andares
+		for(int i=0; i<10; i++) {
+			e1.sobe();
+		}
+		
+		//Saindo 2 pessoas
+		for(int i=0; i<2; i++) {
+			e1.sai();
+		}
+		
+		//Subindo 10 andares
+		for(int i=0; i<10; i++) {
+			e1.sobe();
+		}
+		
+		//Saindo 3 pessoas
+		for(int i=0; i<3; i++) {
+			e1.sai();
+		}
+		
+		//Entrando 1 pessoas
+		for(int i=0; i<1; i++) {
+			e1.entra();
+		}
 			
+		//Descendo 20 andares
+		for(int i=0; i<20; i++) {
+			e1.desce();;
+		}
 	}
 }
 
@@ -37,6 +64,7 @@ class Elevador {
 	Integer andar;
 	Integer capacidadeMaxima;
 	Integer quantidadePessoas;
+	Integer totalAndarPredio;
 	
 	//Constructors
 	public Elevador(Integer capacidadeMaxima) {
@@ -44,12 +72,21 @@ class Elevador {
 		this.andar = 0;
 		this.capacidadeMaxima = capacidadeMaxima;
 		this.quantidadePessoas = 0;
+		this.totalAndarPredio=0;
 	}
 	
 	public Elevador() {
 	}
 	
 	//Getters e Setters
+	public Integer getTotalAndarPredio() {
+		return totalAndarPredio;
+	}
+
+	public void setTotalAndarPredio(Integer totalAndarPredio) {
+		this.totalAndarPredio = totalAndarPredio;
+	}
+	
 	public Integer getAndar() {
 		return andar;
 	}
@@ -70,31 +107,21 @@ class Elevador {
 	}
 	
 	//Métodos
-	public void Inicializa(Integer capacidade) {
+	public void inicializa(Integer capacidade, Integer totalAndares) {
 		this.andar = 0;
 		this.capacidadeMaxima = capacidade;
 		this.quantidadePessoas = 0;
+		this.totalAndarPredio = totalAndares;
 		
-		System.out.println("Instalado novo elevador no prédio com capacidade para transportar "  + this.capacidadeMaxima + " pessoas.");
+		System.out.println("Instalado novo elevador com capacidade para transportar "  + this.capacidadeMaxima + " pessoas no prédio com " + this.totalAndarPredio + " andares.");
 	}
-	
-	
-	/*
-	 * 
-	 * Entra : para acrescentar uma pessoa no elevador (só deve acrescentar se ainda houver
-espaço);
-Sai : para remover uma pessoa do elevador (só deve remover se houver alguém
-dentro dele);
-Sobe : para subir um andar (não deve subir se já estiver no último andar);
-Desce : para descer um andar (não deve descer se já estiver no térreo);
-Encapsular todos os atributos da classe (criar os métodos set e get).*/
 	 
-	public void Entra() {
+	public void entra() {
 		if (this.capacidadeMaxima>this.quantidadePessoas) {
 			this.quantidadePessoas++;
 			if (this.quantidadePessoas>1) {
 				String andarVerificado = verificarAndar(this.andar);
-				System.out.println("Entrou mais uma pessoa no Elevador, que agora transporta " + this.quantidadePessoas +
+				System.out.println("Entrou mais uma pessoa no Elevador, que agora está com " + this.quantidadePessoas +
 						" pessoas e está no "+ andarVerificado + ".");
 			} else {
 				String andarVerificado = verificarAndar(this.andar);
@@ -106,23 +133,43 @@ Encapsular todos os atributos da classe (criar os métodos set e get).*/
 		}
 	}
 	
-	public void Sai() {
+	public void sai() {
 		if (this.quantidadePessoas>0) {
 			this.quantidadePessoas--;
 			switch(this.quantidadePessoas) {
 			case 0:
-				System.out.println("O elevador agora está vazio.");
+				System.out.println("Saiu a última pessoa do Elevador, que agora está vazio.");
 			break;
 			case 1:
-				System.out.println("O elevador agora está com 1 pessoa.");
+				System.out.println("Saiu uma pessoa do Elevador, que agora está com 1 pessoa.");
 			default:
-				System.out.println("O elevador agora está com " + this.quantidadePessoas + "pessoas.");
+				System.out.println("Saiu uma pessoa do Elevador, que agora está com " + this.quantidadePessoas + " pessoas.");
 			}
 		} else {
 			System.out.println("O elevador já está vazio!");
 		}
 	}
 
+	public void sobe() {
+		if (this.totalAndarPredio>this.andar) {
+			this.andar++;
+			String andarVerificado = verificarAndar(this.andar);
+			System.out.println("O Elevador subiu para o "+ andarVerificado + " transportando " + this.quantidadePessoas + " pessoa(s).");
+		} else {
+			System.out.println("O Elevador já chegou no último andar.");
+		}
+	}
+	
+	public void desce() {
+		if(this.andar>0) {
+			this.andar--;
+			String andarVerificado = verificarAndar(this.andar);
+			System.out.println("O Elevador desceu para o "+ andarVerificado + " transportando " + this.quantidadePessoas + " pessoa(s).");
+		}else {
+			System.out.println("O Elevador já está no térreo.");
+		}
+	}
+	
 	private String verificarAndar(Integer andarVerificar) {
 		String andarVerificado ="";
 		switch(andarVerificar) {
